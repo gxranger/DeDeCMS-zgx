@@ -1,0 +1,33 @@
+<script>
+            $(function() {
+             
+             // 选中样式
+              var strStyle = "{dede:type typeid='3'}<li class='sign-li active' ><a href='[field:typelink/]' title='[field:typename/]'><b>[field:typename/]</b></a></li>{/dede:type}";
+
+            // 未选中样式
+              var str = "{dede:type typeid='3'}<li class='sign-li' ><a href='[field:typelink/]' title='[field:typename/]'><b>[field:typename/]</b></a></li>{/dede:type}";
+             
+            // 父级栏目url 
+              var webUrl = "{dede:global.cfg_basehost/}{dede:type typeid='3'}[field:typelink/]{/dede:type}";
+
+              // 父级栏目ID
+              var parId = "{dede:type  typeid='3' }[field:id/]{/dede:type}"
+
+              // 当前栏目ID
+              var navId = "{dede:type}[field:id/]{/dede:type}";
+
+              // 判断父级栏目ID与当前栏目ID是否相等，判断当前栏目url和父级栏目url是否不相等
+              // 条件成立，执行插入未选中样式
+              if(parId !== navId & window.location.href !== webUrl){
+                $(".sign-li").eq(0).before(str);
+              }
+
+              //判断父级栏目ID与当前栏目ID是否相等，判断当前栏目url和父级栏目url是否相等
+              //条件成立，执行插入选中样式
+              if(parId === navId || window.location.href === webUrl){
+                $(".sign-li").eq(0).before(strStyle);
+              }
+
+            });
+            
+</script>
